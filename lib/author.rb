@@ -27,6 +27,13 @@ class Author
         self.new(obj_hash)
     end
 
+    def build_tweet(attr_hash={})
+        Tweet.new(attr_hash).tap{|new_tweet| new_tweet.author_id = self.id}
+    end
+
+    def create_tweet(attr_hash={})
+        build_tweet(attr_hash).save
+    end
 
     def save
         # add the attr_accessor data to the db
